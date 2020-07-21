@@ -1,13 +1,14 @@
 import React from "react";
 import Container from "./Container";
+import Header from "./Header";
+import Footer from "./Footer";
+import Main from "./Main";
 
 function App() {
   return (
     <Container>
-      <header className="header">
-        <h1 className="header__title">Currency Converter</h1>
-      </header>
-      <main className="main">
+      <Header title="currency converter" />
+      <Main>
         <form className="form js-form">
           <p>
             <label>
@@ -71,10 +72,8 @@ function App() {
             </label>
           </p>
         </form>
-      </main>
-      <footer className="footer">
-        <span>&copy Copyright Konrad Kasperczyk 2020 All Rights Reserved</span>
-      </footer>
+      </Main>
+      <Footer title="&copy Copyright Konrad Kasperczyk 2020 All Rights Reserved" />
     </Container>
   );
 }
