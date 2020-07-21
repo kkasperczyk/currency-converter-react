@@ -1,79 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "./Container";
 import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
+import Form from "./Form";
+import Result from "./Result";
 
 function App() {
+  const [result, setResult] = useState("");
+
+  const calculateResult = (convertFrom, convertTo, amount) => {
+    let plnValue;
+    let result;
+
+    const rates = {
+      eurRate: 4.4278,
+      usdRate: 3.9058,
+      gbpRate: 4.9384,
+      chfRate: 4.1187,
+    };
+
+    const { eurRate, usdRate, gbpRate, chfRate } = rates;
+    // eslint-disable-next-line default-case
+    switch (convertFrom) {
+      case "PLN":
+        plnValue = +amount;
+        break;
+      case "EUR":
+        plnValue = amount * eurRate;
+        break;
+      case "USD":
+        plnValue = amount * usdRate;
+        break;
+      case "GBP":
+        plnValue = amount * gbpRate;
+        break;
+      case "CHF":
+        plnValue = amount * chfRate;
+        break;
+    }
+
+    // eslint-disable-next-line default-case
+    switch (convertTo) {
+      case "PLN":
+        result = plnValue;
+        break;
+      case "EUR":
+        result = plnValue / eurRate;
+        break;
+      case "USD":
+        result = plnValue / usdRate;
+        break;
+      case "GBP":
+        result = plnValue / gbpRate;
+        break;
+      case "CHF":
+        result = plnValue / chfRate;
+        break;
+    }
+
+    setResult(`${result.toFixed(2)}`);
+  };
+
   return (
     <Container>
       <Header title="currency converter" />
       <Main>
-        <form className="form js-form">
-          <p>
-            <label>
-              <span className="form__labelText">Amount:</span>
-              <input
-                className="form__field form__field--bigger form__amount js-form__amount"
-                type="number"
-                name="amount"
-                min="1"
-                step="any"
-                required
-                autoFocus
-                placeholder="Enter amount"
-              />
-            </label>
-          </p>
-          <p>
-            <label>
-              <span className="form__labelText">From:</span>
-              <select className="form__field js-convertFrom" required>
-                <option value="pln">PLN</option>
-                <option value="usd">USD</option>
-                <option value="gbp">GBP</option>
-                <option value="eur">EUR</option>
-                <option value="chf">CHF</option>
-              </select>
-            </label>
-          </p>
-          <p>
-            <label>
-              <span className="form__labelText">To:</span>
-              <select className="form__field js-convertTo" required>
-                <option value="pln">PLN</option>
-                <option value="usd" selected>
-                  USD
-                </option>
-                <option value="gbp">GBP</option>
-                <option value="eur">EUR</option>
-                <option value="chf">CHF</option>
-              </select>
-            </label>
-          </p>
-          <div className="form__buttons">
-            <p>
-              <button className="form__button js-form__button">Convert</button>
-            </p>
-            <p>
-              <button className="form__button" type="reset">
-                Reset
-              </button>
-            </p>
-          </div>
-          <p className="form__resultParagraph">
-            <label>
-              <span className="form__labelText">Result:</span>
-              <input
-                className="form__field form__field--bigger js-convertedValue"
-                type="number"
-                readonly
-              />
-            </label>
-          </p>
-        </form>
+        <Form calculateResult={calculateResult} />
+        <Result result={result} />
       </Main>
-      <Footer title="&copy Copyright Konrad Kasperczyk 2020 All Rights Reserved" />
+      <Footer title="Copyright Konrad Kasperczyk 2020 All Rights Reserved" />
     </Container>
   );
 }
