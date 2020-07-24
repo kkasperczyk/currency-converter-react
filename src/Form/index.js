@@ -11,8 +11,15 @@ const Form = ({ calculateResult }) => {
     calculateResult(convertFrom, convertTo, amount);
   };
 
+  const onFormReset = (event) => {
+    event.preventDefault();
+    setAmount("");
+    setConvertFrom("PLN");
+    setConvertTo("EUR");
+  };
+
   return (
-    <form onSubmit={onFormSubmit} className="form">
+    <form onSubmit={onFormSubmit} onReset={onFormReset} className="form">
       <p>
         <label>
           <span className="form__labelText">Amount:</span>
