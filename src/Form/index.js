@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style.css";
 
-const Form = ({ calculateResult }) => {
+const Form = ({ calculateResult, setResult }) => {
   const [amount, setAmount] = useState("");
   const [convertFrom, setConvertFrom] = useState("PLN");
   const [convertTo, setConvertTo] = useState("EUR");
@@ -16,6 +16,7 @@ const Form = ({ calculateResult }) => {
     setAmount("");
     setConvertFrom("PLN");
     setConvertTo("EUR");
+    setResult("");
   };
 
   return (

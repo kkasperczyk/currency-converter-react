@@ -66,7 +66,7 @@ function App() {
     <Container>
       <Header title="currency converter" />
       <Main>
-        <Form calculateResult={calculateResult} />
+        <Form calculateResult={calculateResult} setResult={setResult} />
         <Result result={result} />
       </Main>
       <Footer title="Copyright Konrad Kasperczyk 2020 All Rights Reserved" />
