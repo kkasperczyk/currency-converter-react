@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import Main from "./Main";
 import Form from "./Form";
 import Result from "./Result";
+import Clock from "./Clock";
 
 function App() {
   const [result, setResult] = useState("");
@@ -66,6 +67,7 @@ function App() {
     <Container>
       <Header title="currency converter" />
       <Main>
+        <Clock />
         <Form calculateResult={calculateResult} setResult={setResult} />
         <Result result={result} />
       </Main>
