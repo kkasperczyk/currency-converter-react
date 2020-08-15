@@ -1,20 +1,19 @@
-.form__labelText {
+import styled from "styled-components";
+
+export const StyledResultLabel = styled.span`
   display: inline-block;
   width: 100%;
   max-width: 80px;
   margin-right: 5px;
   color: #444;
   font-weight: bold;
-}
+`;
 
-.form__field {
+export const StyledResultField = styled.input`
   border: 2px solid #ccc;
   padding: 10px;
   width: 100%;
   max-width: 80px;
   border-radius: 20px;
-}
-
-.form__field--bigger {
   max-width: 140px;
-}
+`;

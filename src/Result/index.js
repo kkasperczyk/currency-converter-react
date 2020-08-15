@@ -1,16 +1,11 @@
 import React from "react";
-import "./style.css";
+import { StyledResultLabel, StyledResultField } from "./styled";
 
 const Result = ({ result }) => (
   <p>
     <label>
-      <span className="form__labelText">Result:</span>
-      <input
-        className="form__field form__field--bigger"
-        type="number"
-        readOnly
-        value={result}
-      />
+      <StyledResultLabel>Result:</StyledResultLabel>
+      <StyledResultField type="number" readOnly value={result} />
     </label>
   </p>
 );
