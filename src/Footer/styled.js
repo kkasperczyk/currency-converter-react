@@ -1,7 +1,9 @@
-.footer {
+import styled from "styled-components";
+
+export const StyledFooter = styled.footer`
   text-align: center;
   border-top: 2px solid hsl(199, 88%, 60%);
   color: #333;
   font-weight: bold;
   padding: 15px;
-}
+`;
