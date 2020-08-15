@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import "./style.css";
+import {
+  StyledFormLabelText,
+  StyledFormField,
+  StyledFormFieldSelect,
+  StyledFormButtonContainer,
+  StyledFormButton,
+} from "./styled";
 
 const Form = ({ calculateResult, setResult }) => {
   const [amount, setAmount] = useState("");
@@ -20,12 +26,11 @@ const Form = ({ calculateResult, setResult }) => {
   };
 
   return (
-    <form onSubmit={onFormSubmit} onReset={onFormReset} className="form">
+    <form onSubmit={onFormSubmit} onReset={onFormReset}>
       <p>
         <label>
-          <span className="form__labelText">Amount:</span>
-          <input
-            className="form__field form__field--bigger form__amount"
+          <StyledFormLabelText>Amount:</StyledFormLabelText>
+          <StyledFormField
             type="number"
             name="amount"
             min="1"
@@ -40,11 +45,10 @@ const Form = ({ calculateResult, setResult }) => {
       </p>
       <p>
         <label>
-          <span className="form__labelText">From:</span>
-          <select
+          <StyledFormLabelText>From:</StyledFormLabelText>
+          <StyledFormFieldSelect
             value={convertFrom}
             onChange={({ target }) => setConvertFrom(target.value)}
-            className="form__field"
             required
           >
             <option>PLN</option>
@@ -52,16 +56,15 @@ const Form = ({ calculateResult, setResult }) => {
             <option>GBP</option>
             <option>EUR</option>
             <option>CHF</option>
-          </select>
+          </StyledFormFieldSelect>
         </label>
       </p>
       <p>
         <label>
-          <span className="form__labelText">To:</span>
-          <select
+          <StyledFormLabelText>To:</StyledFormLabelText>
+          <StyledFormFieldSelect
             value={convertTo}
             onChange={({ target }) => setConvertTo(target.value)}
-            className="form__field"
             required
           >
             <option>PLN</option>
@@ -69,19 +72,17 @@ const Form = ({ calculateResult, setResult }) => {
             <option>GBP</option>
             <option>EUR</option>
             <option>CHF</option>
-          </select>
+          </StyledFormFieldSelect>
         </label>
       </p>
-      <div className="form__buttons">
+      <StyledFormButtonContainer>
         <p>
-          <button className="form__button">Convert</button>
+          <StyledFormButton>Convert</StyledFormButton>
         </p>
         <p>
-          <button className="form__button" type="reset">
-            Reset
-          </button>
+          <StyledFormButton type="reset">Reset</StyledFormButton>
         </p>
-      </div>
+      </StyledFormButtonContainer>
     </form>
   );
 };
