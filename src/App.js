@@ -6,6 +6,7 @@ import Main from "./Main";
 import Form from "./Form";
 import Result from "./Result";
 import Clock from "./Clock";
+import { GlobalStyles } from "./GlobalStyles";
 
 function App() {
   const [result, setResult] = useState("");
@@ -64,15 +65,18 @@ function App() {
   };
 
   return (
-    <Container>
-      <Header title="currency converter" />
-      <Main>
-        <Clock />
-        <Form calculateResult={calculateResult} setResult={setResult} />
-        <Result result={result} />
-      </Main>
-      <Footer title="Copyright Konrad Kasperczyk 2020 All Rights Reserved" />
-    </Container>
+    <>
+      <GlobalStyles />
+      <Container>
+        <Header title="currency converter" />
+        <Main>
+          <Clock />
+          <Form calculateResult={calculateResult} setResult={setResult} />
+          <Result result={result} />
+        </Main>
+        <Footer title="Copyright Konrad Kasperczyk 2020 All Rights Reserved" />
+      </Container>
+    </>
   );
 }
 
