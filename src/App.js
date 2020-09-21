@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import { useRates } from "./useRates";
 import Container from "./Container";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -10,26 +10,11 @@ import Clock from "./Clock";
 import { GlobalStyles } from "./GlobalStyles";
 
 function App() {
+  const { date, rates, isError } = useRates();
   const [result, setResult] = useState("");
 
-  const [plnRates, setPlnRates] = useState([]);
-
-  useEffect(() => {
-    const getRates = async () => {
-      await axios
-        .get("https://api.exchangeratesapi.io/latest?base=PLN")
-        .then((response) => {
-          setPlnRates(response.data.rates);
-        })
-        .catch(() => {
-          console.error("Nie udało się pobrać kursów");
-        });
-    };
-    getRates();
-  }, []);
-
   const calculateResult = (convertFrom, convertTo, amount) => {
-    const result = (amount * plnRates[convertTo]) / plnRates[convertFrom];
+    const result = (amount * rates[convertTo]) / rates[convertFrom];
 
     setResult(`${result.toFixed(2)}`);
   };
@@ -41,8 +26,19 @@ function App() {
         <Header title="currency converter" />
         <Main>
           <Clock />
-          <Form calculateResult={calculateResult} setResult={setResult} />
-          <Result result={result} />
+          {rates ? (
+            <>
+              <Form calculateResult={calculateResult} setResult={setResult} />
+              <Result result={result} />
+              <p>
+                Currency exchange rates updated on: <strong>{date}</strong>.
+              </p>
+            </>
+          ) : !isError ? (
+            "Loading rates..."
+          ) : (
+            "Error, try again later"
+          )}
         </Main>
         <Footer title="Copyright Konrad Kasperczyk 2020 All Rights Reserved" />
       </Container>
