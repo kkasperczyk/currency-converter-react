@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Container from "./Container";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -11,16 +12,24 @@ import { GlobalStyles } from "./GlobalStyles";
 function App() {
   const [result, setResult] = useState("");
 
-  const plnRates = {
-    PLN: 1,
-    EUR: 4.39,
-    USD: 3.71,
-    GBP: 4.85,
-    CHF: 4.08,
-  };
+  const [plnRates, setPlnRates] = useState([]);
+
+  useEffect(() => {
+    const getRates = async () => {
+      await axios
+        .get("https://api.exchangeratesapi.io/latest?base=PLN")
+        .then((response) => {
+          setPlnRates(response.data.rates);
+        })
+        .catch(() => {
+          console.error("Nie udało się pobrać kursów");
+        });
+    };
+    getRates();
+  }, []);
 
   const calculateResult = (convertFrom, convertTo, amount) => {
-    const result = (amount * plnRates[convertFrom]) / plnRates[convertTo];
+    const result = (amount * plnRates[convertTo]) / plnRates[convertFrom];
 
     setResult(`${result.toFixed(2)}`);
   };
