@@ -8,11 +8,7 @@ https://kkasperczyk.github.io/currency-converter-react/
 
 ## DESCRIPTION
 
-This is a simple **currency converter** created as a part of a homework for *"YouCode - Frontend Developer from scratch*" course. It allows you to convert some popular currencies*.
-
-The supported currencies at this moment are: PLN, EUR, USD, GBP and CHF.
-
-##### * Important! Rates are currently static.
+This is a simple **currency converter** created as a part of a homework for *"YouCode - Frontend Developer from scratch*" course.
 
 ## HOW TO USE
 
@@ -27,8 +23,10 @@ The supported currencies at this moment are: PLN, EUR, USD, GBP and CHF.
 ### TECHNOLOGIES USED
 * *HTML*
 * *CSS*
-* *JS*
+* *JS ES6+*
 * *REACT.JS*
+* *CUSTOM HOOKS*
+* *STYLED COMPONENTS*
 
 ### AUTHOR
 
